@@ -1,0 +1,27 @@
+{
+    "routes": [
+        {
+            "route": "/"
+        },
+        {
+            "route": "/todos",
+            "allowedRoles": ["authenticated"]
+        },
+        {
+            "route": "/todo/:id",
+            "allowedRoles": ["authenticated"]
+        },
+        {
+            "route": "/done",
+            "allowedRoles": ["authenticated"]
+        },
+        {
+            "route": "/404"
+        }
+      ],
+
+    "navigationFallback": {
+      "rewrite": "/index.html",
+      "exclude": ["*.{css,scss,js,png,gif,ico,jpg,svg}"]
+    }
+  }

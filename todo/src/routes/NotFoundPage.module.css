@@ -1,0 +1,19 @@
+.notFoundContainer {
+    text-align: center;
+  }
+  
+  .notFoundTitle {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  .notFoundText {
+    font-size: 1rem;
+    margin-bottom: 20px;
+  }
+  
+  .linkBack {
+    display: block;
+    color: blue;
+  }
+  
