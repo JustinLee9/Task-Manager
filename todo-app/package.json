@@ -1,13 +1,11 @@
 {
-  "name": "homework2",
+  "name": "todo-app",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-    "func": "^1.3.5",
-    "node": "^18.20.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.22.3",
@@ -16,7 +14,6 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "web": "npx @azure/static-web-apps-cli start http://localhost:3000 --run \"npm start\" --api-location ./api",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -38,8 +35,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "@azure/static-web-apps-cli": "^1.1.7"
   }
 }

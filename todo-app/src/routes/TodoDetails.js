@@ -7,11 +7,6 @@ function TodoDetails() {
     const [todo, setTodo] = useState(null);
     const [editedContent, setEditedContent] = useState("");
     const [isEditing, setIsEditing] = useState(false);
-    const [authenticated, setAuthenticated] = useState(true);
-
-    useEffect(() => {
-        fetchUser();
-    }, []);
 
     useEffect(() => {
         if (id) {
@@ -19,20 +14,8 @@ function TodoDetails() {
         }
     }, [id]);
 
-    const fetchUser = async () => {
-        try {
-            const response = await fetch("/.auth/me");
-            const data = await response.json();
-            if (!data.clientPrincipal) {
-                setAuthenticated(false);
-            }
-        } catch (error) {
-            console.error("Error fetching user:", error);
-        }
-    };
-
     const fetchTodo = () => {
-        fetch(`/api/getTodos?id=${id}`)
+        fetch(`/.netlify/functions/getTodos`)
             .then((response) => (response.ok ? response.json() : Promise.reject("Network response was not ok")))
             .then((data) => {
                 if (Array.isArray(data)) {
@@ -60,7 +43,7 @@ function TodoDetails() {
             return;
         }
 
-        fetch("/api/updateTodo", {
+        fetch("/.netlify/functions/updateTodo", {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ _id: id, content: editedContent, done: todo.done }),
@@ -79,7 +62,7 @@ function TodoDetails() {
             return;
         }
 
-        fetch("/api/updateTodo", {
+        fetch("/.netlify/functions/updateTodo", {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ _id: id, content: todo.content, done: true }),
@@ -91,24 +74,25 @@ function TodoDetails() {
             .catch((error) => console.error("Error marking todo as done:", error));
     };
 
-    if (!authenticated) {
-        window.location.href = "/.auth/login/github?post_login_redirect_uri=/todos";
-        return null;
-    }
-
     if (!todo) return <div className={styles.container}>Loading...</div>;
 
     return (
         <div className={styles.container}>
             {isEditing ? (
                 <div className={styles["edit-container"]}>
-                    <textarea value={editedContent} onChange={(e) => setEditedContent(e.target.value)} rows="5" cols="50" />
+                    <textarea 
+                        value={editedContent} 
+                        onChange={(e) => setEditedContent(e.target.value)} 
+                        rows="5" 
+                        cols="50" 
+                    />
                     <button onClick={handleSave}>Save</button>
                 </div>
             ) : (
                 <div>
                     <h2>Todo Details</h2>
                     <p><strong>Content:</strong> {todo.content}</p>
+                    <p><strong>Status:</strong> {todo.done ? "Completed" : "Pending"}</p>
                     {!todo.done && (
                         <div className={styles.actions}>
                             <button onClick={handleEdit}>Edit</button>

@@ -5,54 +5,32 @@ import styles from "./TodosPage.module.css";
 function TodosPage() {
   const [todos, setTodos] = useState([]);
   const [inputValue, setInputValue] = useState("");
-  const [userID, setUserID] = useState("");
-  const [authenticated, setAuthenticated] = useState(true);
+
   useEffect(() => {
-    fetchUser();
+    fetchTodos();
   }, []);
 
-  useEffect(() => {
-    if (userID) {
-      fetchTodos();
-    }
-  }, [userID]);
-
-  const fetchUser = async () => {
-    try {
-      const response = await fetch("/.auth/me");
-      const data = await response.json();
-      if (data.clientPrincipal) {
-        setUserID(data.clientPrincipal.userId);
-      } else {
-        setAuthenticated(false);
-      }
-    } catch (error) {
-      console.error("Error fetching user:", error);
-    }
-  };
-
   const fetchTodos = () => {
-    fetch("/api/getTodos")
+    fetch("/.netlify/functions/getTodos")
       .then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
         return response.json();
       })
-      .then((data) => setTodos(data.filter((todo) => todo.userId === userID && !todo.done)))
+      .then((data) => setTodos(data.filter((todo) => !todo.done))) // Show all undone todos
       .catch((error) => console.error("Error fetching todos:", error));
   };
-  
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const newTodo = {
       content: inputValue,
       done: false,
-      userId: userID,
+      userId: "demo-user", // Static demo user
     };
 
-    fetch("/api/addTodos", {
+    fetch("/.netlify/functions/addTodos", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -69,10 +47,9 @@ function TodosPage() {
       .then(() => setInputValue(""))
       .catch((error) => console.error("Error adding todo:", error));
   };
-  
 
   const markTodoAsDone = (id) => {
-    fetch("/api/updateTodo", {
+    fetch("/.netlify/functions/updateTodo", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -89,18 +66,11 @@ function TodosPage() {
       .catch((error) => console.error("Error marking todo as done:", error));
   };
 
-  const handleLogout = () => {
-    window.location.href = "/.auth/logout";
-  };
-
-  if (!authenticated) {
-    window.location.href = "/.auth/login/github?post_login_redirect_uri=/todos";
-    return null;
-  }
-
   return (
     <div className={styles.container}>
-      <h1>Todo List</h1>
+      <h1>Todo List Demo</h1>
+      <p>A full-stack todo application showcase</p>
+      
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -108,6 +78,7 @@ function TodosPage() {
           onChange={(e) => setInputValue(e.target.value)}
           placeholder="Enter a new todo..."
           className={styles["input-text"]}
+          required
         />
         <button type="submit" className={styles["add-button"]}>
           Add Todo
@@ -131,10 +102,13 @@ function TodosPage() {
           </li>
         ))}
       </ul>
+      
       <Link to="/done" className={styles["view-done-link"]}>
         View Done Todos
       </Link>
-      <button onClick={handleLogout} className={styles["logout-button"]}>Logout</button>
+      <Link to="/" className={styles["view-done-link"]}>
+        Back to Home
+      </Link>
     </div>
   );
 }
