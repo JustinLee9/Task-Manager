@@ -9,17 +9,15 @@ function TodoDetails() {
     const [isEditing, setIsEditing] = useState(false);
 
     useEffect(() => {
-        if (id) {
-            fetchTodo();
-        }
-    }, [id]);
+        fetchTodo();
+    }, [fetchTodo]);
 
     const fetchTodo = () => {
         fetch(`/.netlify/functions/getTodos`)
             .then((response) => (response.ok ? response.json() : Promise.reject("Network response was not ok")))
             .then((data) => {
                 if (Array.isArray(data)) {
-                    const selectedTodo = data.find(todo => todo._id === id);
+                    const selectedTodo = data.find((todo) => todo._id === id);
                     if (selectedTodo) {
                         setTodo(selectedTodo);
                     } else {
@@ -80,19 +78,18 @@ function TodoDetails() {
         <div className={styles.container}>
             {isEditing ? (
                 <div className={styles["edit-container"]}>
-                    <textarea 
-                        value={editedContent} 
-                        onChange={(e) => setEditedContent(e.target.value)} 
-                        rows="5" 
-                        cols="50" 
-                    />
+                    <textarea value={editedContent} onChange={(e) => setEditedContent(e.target.value)} rows="5" cols="50" />
                     <button onClick={handleSave}>Save</button>
                 </div>
             ) : (
                 <div>
                     <h2>Todo Details</h2>
-                    <p><strong>Content:</strong> {todo.content}</p>
-                    <p><strong>Status:</strong> {todo.done ? "Completed" : "Pending"}</p>
+                    <p>
+                        <strong>Content:</strong> {todo.content}
+                    </p>
+                    <p>
+                        <strong>Status:</strong> {todo.done ? "Completed" : "Pending"}
+                    </p>
                     {!todo.done && (
                         <div className={styles.actions}>
                             <button onClick={handleEdit}>Edit</button>
@@ -101,7 +98,9 @@ function TodoDetails() {
                     )}
                 </div>
             )}
-            <Link to="/todos" className={styles.link}>Back to Todos</Link>
+            <Link to="/todos" className={styles.link}>
+                Back to Todos
+            </Link>
         </div>
     );
 }
