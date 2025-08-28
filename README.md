@@ -15,5 +15,6 @@ A full-stack Todo app built with **React**, **Netlify Functions**, and **MongoDB
 
 ## Live Demo
 The app is deployed on Netlify here:  
-👉 Todo App[https://amazing-lokum-5d1160.netlify.app]
+👉 [Todo App](https://amazing-lokum-5d1160.netlify.app)
+
 
