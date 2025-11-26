@@ -2,25 +2,25 @@
 
 A full-stack task management application built with React, Netlify Functions, and MongoDB. Features a modern, responsive interface with complete CRUD operations and serverless backend architecture.
 
-## 🚀 Live Demo
+## Live Demo
 
 **[View Live Application](https://amazing-lokum-5d1160.netlify.app)**
 
-## 📸 Screenshots
+## Screenshots
 
 _[Add screenshots here of your app - home page, completed tasks view, etc.]_
 
-## ✨ Features
+## Features
 
-- ✅ **Create Tasks** - Add new tasks with a clean, intuitive interface
-- ✅ **Edit Tasks** - Update task details on the fly
-- ✅ **Complete Tasks** - Mark tasks as done and view them separately
-- ✅ **Delete Tasks** - Remove tasks you no longer need
-- ✅ **Persistent Storage** - All data stored in MongoDB Atlas
-- ✅ **Responsive Design** - Works seamlessly on desktop and mobile
-- ✅ **Serverless Backend** - Powered by Netlify Functions for scalability
+- **Create Tasks** - Add new tasks with a clean, intuitive interface
+- **Edit Tasks** - Update task details on the fly
+- **Complete Tasks** - Mark tasks as done and view them separately
+- **Delete Tasks** - Remove tasks you no longer need
+- **Persistent Storage** - All data stored in MongoDB Atlas
+- **Responsive Design** - Works seamlessly on desktop and mobile
+- **Serverless Backend** - Powered by Netlify Functions for scalability
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 **Frontend:**
 - React with React Router for navigation
@@ -39,7 +39,7 @@ _[Add screenshots here of your app - home page, completed tasks view, etc.]_
 - Netlify (frontend + functions)
 - Environment variable configuration for secure DB access
 
-## 🏗️ Architecture
+## Architecture
 
 ```
 Client (React) 
@@ -54,14 +54,14 @@ The application uses a serverless architecture where:
 - Netlify Functions serve as API endpoints (CORS-enabled)
 - MongoDB Atlas provides persistent cloud storage
 
-## 🔧 API Endpoints
+## API Endpoints
 
 - `GET /api/tasks` - Fetch all tasks
 - `POST /api/tasks` - Create a new task
 - `PUT /api/tasks/:id` - Update an existing task
 - `DELETE /api/tasks/:id` - Delete a task
 
-## 📦 Installation & Local Development
+## Installation & Local Development
 
 ### Prerequisites
 - Node.js (v14 or higher)
@@ -103,7 +103,7 @@ The app will be available at `http://localhost:8888`
 npm run build
 ```
 
-## 🚢 Deployment
+## Deployment
 
 The app is configured for Netlify deployment:
 
@@ -117,24 +117,24 @@ Build settings:
 - Publish directory: `build`
 - Functions directory: `netlify/functions`
 
-## 🎯 Project Goals & Achievements
+## Project Goals & Achievements
 
 This project successfully demonstrates:
-- ✅ Building a full-stack application with serverless architecture
-- ✅ Implementing complete CRUD operations with MongoDB
-- ✅ Managing async state and API calls in React
-- ✅ Deploying serverless functions with Netlify
-- ✅ Handling CORS in a production environment
-- ✅ Configuring environment variables for secure deployment
-- ✅ Creating a responsive, user-friendly interface
+- Building a full-stack application with serverless architecture
+- Implementing complete CRUD operations with MongoDB
+- Managing async state and API calls in React
+- Deploying serverless functions with Netlify
+- Handling CORS in a production environment
+- Configuring environment variables for secure deployment
+- Creating a responsive, user-friendly interface
 
-## 🔒 Security
+## Security
 
 - MongoDB connection string stored as environment variable
 - CORS enabled only for necessary origins
 - No sensitive data exposed in client-side code
 
-## 👤 Author
+## Author
 
 **Justin Lee**
 - GitHub: [@JustinLee9](https://github.com/JustinLee9)
@@ -143,3 +143,4 @@ This project successfully demonstrates:
 ---
 
 ⭐ If you found this project helpful, please consider giving it a star!
+
