@@ -6,10 +6,6 @@ A full-stack task management application built with React, Netlify Functions, an
 
 **[View Live Application](https://amazing-lokum-5d1160.netlify.app)**
 
-## Screenshots
-
-_[Add screenshots here of your app - home page, completed tasks view, etc.]_
-
 ## Features
 
 - **Create Tasks** - Add new tasks with a clean, intuitive interface
@@ -143,5 +139,6 @@ This project successfully demonstrates:
 ---
 
 If you found this project helpful, please consider giving it a star!
+
 
 
